@@ -51,7 +51,8 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 ","	        { return tok(sym.COMMA, null); }
 ";"	        { return tok(sym.SEMICOLON, null); }
 ":"	        { return tok(sym.COLON, null); }
-"~"         { return tok (sym.TILDE, null); }
+"~"         { return tok(sym.TILDE, null); }
+"."         { return tok(sym.PERIOD, null); }
 .           { err("Illegal character: " + yytext()); }
 "if"        { return tok(sym.IF); }
 "else"      { return tok(sym.ELSE); }
@@ -71,5 +72,5 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 "<="        { return tok(sym.LE); }
 "&&"        { return tok(sym.AND); }
 "||"        { return tok(sym.OR); }
-"i++"       { return tok (sym.INCREMENT); }
-"i--"       { return tok (sym.DECREMENT); }
+"i++"       { return tok(sym.INCREMENT); }
+"i--"       { return tok(sym.DECREMENT); }
