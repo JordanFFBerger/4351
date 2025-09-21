@@ -78,7 +78,7 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 \"([^\"\\]|\\.)*\"     { return tok(sym.STRING_LITERAL, yytext()); }
 [0-9]+                 { return tok(sym.INTEGER_LITERAL, yytext()); }
 "//".*                 { /* skip single-line comment */ }
-"/*"([^*]*\*+)*"/"     { /* skip multi-line comment */ }
+"/*"([^*]*\*+)"*/"     { /* skip multi-line comment */ }
 
 "+"                    { return tok(sym.PLUS); }
 "-"                    { return tok(sym.MINUS); }
