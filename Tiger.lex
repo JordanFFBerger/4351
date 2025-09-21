@@ -54,10 +54,17 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 "~"                    { return tok(sym.TILDE, null); }
 "."                    { return tok(sym.PERIOD, null); }
 .                      { err("Illegal character: " + yytext()); }
+"{"                    { return tok(sym.LBRACE); }
+"}"                    { return tok(sym.RBRACE); }
+"("                    { return tok(sym.LPAREN); }
+")"                    { return tok(sym.RPAREN); }
+"["                    { return tok(sym.LBRACK); }
+"]"                    { return tok(sym.RBRACK); }
 "if"                   { return tok(sym.IF); }
 "else"                 { return tok(sym.ELSE); }
 "while"                { return tok(sym.WHILE); }
 "do"                   { return tok(sym.DO); }
+"for"                  { return tok(sym.FOR); }
 [a-zA-Z_][a-zA-Z0-9_]* { return tok(sym.ID, yytext()); }
 \"([^\"\\]|\\.)*\"     { return tok(sym.STRING_LITERAL, yytext()); }
 [0-9]+                 { return tok(sym.INTEGER_LITERAL, yytext()); }
@@ -75,5 +82,5 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 "<="                   { return tok(sym.LE); }
 "&&"                   { return tok(sym.AND); }
 "||"                   { return tok(sym.OR); }
-"i++"                  { return tok(sym.INCREMENT); }
-"i--"                  { return tok(sym.DECREMENT); }
+"++"                   { return tok(sym.INCREMENT); }
+"--"                   { return tok(sym.DECREMENT); }
