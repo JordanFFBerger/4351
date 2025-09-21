@@ -46,31 +46,34 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 
 
 %%
-" "	        {}
-\n	        { newline(); }
-","	        { return tok(sym.COMMA, null); }
-";"	        { return tok(sym.SEMICOLON, null); }
-":"	        { return tok(sym.COLON, null); }
-"~"         { return tok(sym.TILDE, null); }
-"."         { return tok(sym.PERIOD, null); }
-.           { err("Illegal character: " + yytext()); }
-"if"        { return tok(sym.IF); }
-"else"      { return tok(sym.ELSE); }
-"while"     { return tok(sym.WHILE); }
-"do"        { return tok(sym.DO); }
-[a-zA-Z_][a-zA-Z0-9_]* { return tok(sym.STRING_LITERAL, yytext()); }
-[0-9]+      { return tok(sym.INTEGER_LITERAL, yytext()); }
-"+"         { return tok(sym.PLUS); }
-"-"         { return tok(sym.MINUS); }
-"*"         { return tok(sym.TIMES); }
-"/"         { return tok(sym.DIVIDE); }
-">"         { return tok(sym.GT); }
-"<"         { return tok(sym.LT); }
-"="         { return tok(sym.EQ); }
-"!="        { return tok(sym.NEQ); }
-">="        { return tok(sym.GE); }
-"<="        { return tok(sym.LE); }
-"&&"        { return tok(sym.AND); }
-"||"        { return tok(sym.OR); }
-"i++"       { return tok(sym.INCREMENT); }
-"i--"       { return tok(sym.DECREMENT); }
+" "	                   {}
+\n	                   { newline(); }
+","	                   { return tok(sym.COMMA, null); }
+";"	                   { return tok(sym.SEMICOLON, null); }
+":"	                   { return tok(sym.COLON, null); }
+"~"                    { return tok(sym.TILDE, null); }
+"."                    { return tok(sym.PERIOD, null); }
+.                      { err("Illegal character: " + yytext()); }
+"if"                   { return tok(sym.IF); }
+"else"                 { return tok(sym.ELSE); }
+"while"                { return tok(sym.WHILE); }
+"do"                   { return tok(sym.DO); }
+[a-zA-Z_][a-zA-Z0-9_]* { return tok(sym.ID, yytext()); }
+\"([^\"\\]|\\.)*\"     { return tok(sym.STRING_LITERAL, yytext()); }
+[0-9]+                 { return tok(sym.INTEGER_LITERAL, yytext()); }
+"//".*                 { /* skip single-line comment */ }
+"/*"([^*]*\*+)*"/"     { /* skip multi-line comment */ }
+"+"                    { return tok(sym.PLUS); }
+"-"                    { return tok(sym.MINUS); }
+"*"                    { return tok(sym.TIMES); }
+"/"                    { return tok(sym.DIVIDE); }
+">"                    { return tok(sym.GT); }
+"<"                    { return tok(sym.LT); }
+"="                    { return tok(sym.EQ); }
+"!="                   { return tok(sym.NEQ); }
+">="                   { return tok(sym.GE); }
+"<="                   { return tok(sym.LE); }
+"&&"                   { return tok(sym.AND); }
+"||"                   { return tok(sym.OR); }
+"i++"                  { return tok(sym.INCREMENT); }
+"i--"                  { return tok(sym.DECREMENT); }
