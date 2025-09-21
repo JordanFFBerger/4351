@@ -88,7 +88,8 @@ public class Main {
     symnames[sym.DECREMENT] = "DECREMENT";
     symnames[sym.MINUS] = "MINUS";
     symnames[sym.OR] = "OR";
-    symnames[sym.error] = "error";
+    symnames[sym.ERROR] = "error";
+    symnames[sym.INT_LITERAL] = "INT_LITERAL";
     symnames[sym.DECIMAL_LITERAL] = "DECIMAL_LITERAL";
     symnames[sym.CONTINUE] = "CONTINUE";
     symnames[sym.IF] = "IF";

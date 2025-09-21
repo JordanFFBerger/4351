@@ -10,9 +10,10 @@ package Parse;
 public class sym {
   /* terminals */
   static final int EOF = 0;
-  static final int error = 1;
+  static final int ERROR = 1;
   static final int ID = 2;
   static final int STRING_LITERAL = 3;
+  static final int INT_LITERAL = 4;
   static final int DECIMAL_LITERAL = 5;
   static final int CHAR_LITERAL = 6;
   static final int INT = 7;
