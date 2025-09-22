@@ -47,7 +47,7 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 
 %%
 " "	                   {}
-"\n"	                   { newline(); }
+\n	                   { newline(); }
 .                      { err("Illegal character: " + yytext()); }
 
 ","	                   { return tok(sym.COMMA, null); }
@@ -74,13 +74,11 @@ Yylex(java.io.InputStream s, ErrorMsg e) {
 
 [a-zA-Z_][a-zA-Z0-9_]* { return tok(sym.ID, yytext()); }
 [0-9]*\\.[0-9]+([eE][+-]?[0-9]+)? { return tok(sym.FLOAT, yytext()); }
-"0x"[0-9a-fA-F]+       {  return tok(sym.HEX_LITERAL, yytext()); }
-"0"[0-7]*          {  return tok(sym.OCTAL_LITERAL, Integer.parseInt(yytext(), 8)); }
-[0-9]+("."[0-9]*)?    { return tok(sym.DECIMAL_LITERAL, yytext()); }
-[+-]?[0-9]+         { return tok(sym.INTEGER_LITERAL, yytext()); }
+[+-]?[0-9]+            { return tok(sym.INT, yytext()); }
 \"([^\"\\]|\\.)*\"     { return tok(sym.STRING_LITERAL, yytext()); }
-"//".*            { /*skip single line comments*/}
-"/*"([^*]*\*+)*"/"     { /*skip multi line comments*/}
+[0-9]+                 { return tok(sym.INTEGER_LITERAL, yytext()); }
+"//".*                 { /* skip single-line comment */ }
+"/*"([^*]*\*+)*"/"     { /* skip multi-line comment */ }
 
 "+"                    { return tok(sym.PLUS); }
 "-"                    { return tok(sym.MINUS); }

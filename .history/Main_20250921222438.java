@@ -1,6 +1,5 @@
 package Parse;
 import java.io.PrintWriter;
-//ignore this 
 
 public class Main {
 
@@ -18,21 +17,9 @@ public class Main {
 	 String extra = "";
          tok=lexer.nextToken();
 	 switch (tok.sym) {
-   case sym.COMMA:    extra = ","; break;
-   case sym.SEMICOLON: extra = ";"; break;
-   case sym.LPAREN:   extra = "("; break;
-   case sym.RPAREN:   extra = ")"; break;
-   case sym.LBRACK:   extra = "["; break;
-   case sym.RBRACK:   extra = "]"; break;
-   case sym.LBRACE:   extra = "{"; break;
-   case sym.RBRACE:   extra = "}"; break;
-   case sym.PLUS:    extra = "+"; break;
 	 case sym.ID:     extra = "\t$" + tok.value; break;
+	 case sym.DECIMAL_LITERAL:    extra = "\t#" + tok.value; break;
 	 case sym.STRING_LITERAL: extra = " \"" + tok.value + "\""; break;
-   case sym.HEX_LITERAL:    extra = "\t" + tok.value; break;
-   case sym.OCTAL_LITERAL:    extra = "\t0" + tok.value; break;
-   case sym.DECIMAL_LITERAL:    extra = "\t#" + tok.value; break;
-   case sym.INTEGER_LITERAL:    extra = "\t#" + tok.value; break;
 	 }
 	 System.out.println(symnames[tok.sym] + " " + tok.left + extra);
       } while (tok.sym != sym.EOF);
@@ -42,9 +29,6 @@ public class Main {
   }
   static String symnames[] = new String[100]; 
   static {
-    symnames[sym.HEX_LITERAL] = "HEX_LITERAL";
-    symnames[sym.OCTAL_LITERAL] = "OCTAL_LITERAL";
-    symnames[sym.INTEGER_LITERAL] = "INTEGER_LITERAL";
     symnames[sym.SHORT] = "SHORT";
     symnames[sym.TIMES] = "TIMES";
     symnames[sym.GT] = "GT";
@@ -95,6 +79,7 @@ public class Main {
     symnames[sym.ELSE] = "ELSE";
     symnames[sym.BREAK] = "BREAK";
     symnames[sym.FUN] = "FUN";
+    symnames[sym.INT] = "INT";
     symnames[sym.STRING_LITERAL] = "STRING_LITERAL";
     symnames[sym.EOF] = "EOF";
     symnames[sym.SEMICOLON] = "SEMICOLON";
@@ -103,7 +88,7 @@ public class Main {
     symnames[sym.DECREMENT] = "DECREMENT";
     symnames[sym.MINUS] = "MINUS";
     symnames[sym.OR] = "OR";
-    symnames[sym.ERROR] = "ERROR";
+    symnames[sym.error] = "error";
     symnames[sym.DECIMAL_LITERAL] = "DECIMAL_LITERAL";
     symnames[sym.CONTINUE] = "CONTINUE";
     symnames[sym.IF] = "IF";
